@@ -25,6 +25,9 @@ jobs:
           at: .
       - checkout
       - run: aws s3 sync ./build s3://test-s3-deploy-reco
+       - run:
+          name: Invalidate Cloudfront
+          command: aws cloudfront create-invalidation --distribution-id E2CC3KTIR6ZBJ3 --paths *
 
 workflows:
   build_test_deploy:
