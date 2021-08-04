@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     machine:
-      enabled: true
+      enabled: ubuntu-2004:202010-01
     steps:
       - checkout
       - run:
@@ -11,8 +11,7 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt install python3-pip
-            sudo pip3 install --upgrade pip setuptools
-            sudo pip3 install awsebcli==3.14.11 --upgrade
+            sudo pip3 install awsebcli --upgrade
       - run: npm install && npm run build
       - persist_to_workspace:
           root: .
@@ -20,7 +19,7 @@ jobs:
             - .
   deploy:
     machine:
-      enabled: true
+      image: ubuntu-2004:202010-01
     steps:
       - attach_workspace:
           at: .
