@@ -11,6 +11,8 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt install python3-pip
+            sudo pip3 install --upgrade pip
+            sudo pip3 install --upgrade setuptools
             sudo pip3 install awsebcli==3.14.11 --upgrade
       - run: npm install && npm run build
       - persist_to_workspace:
